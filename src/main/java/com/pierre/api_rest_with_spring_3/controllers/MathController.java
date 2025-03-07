@@ -59,4 +59,23 @@ public class MathController {
         return convertoDoube(numberOne) * (convertoDoube(numberTwo));
     }
 
+    @RequestMapping("/media/{numberOne}/{numberTwo}")
+    public Double media(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    )throws Exception {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedOperationException("Please set a numeric value!");
+        return (convertoDoube(numberOne) + convertoDoube(numberTwo))/2;
+    }
+
+    @RequestMapping("/squareroot/{number}")
+    public Double mean(
+            @PathVariable("number") String number
+    )throws Exception {
+        if(!isNumeric(number))throw new UnsupportedOperationException("Please set a numeric value!");
+        //Double result = Math.sqrt(convertoDoube(number));
+        //return result;
+        return Math.sqrt(convertoDoube(number));
+    }
+
 }
