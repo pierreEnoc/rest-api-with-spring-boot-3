@@ -32,4 +32,31 @@ public class MathController {
        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
     }
 
+    @RequestMapping("/sub/{numberOne}/{numberTwo}")
+    public Double Sub(
+          @PathVariable("numberOne")  String numberOne,
+          @PathVariable("numberTwo")  String numberTwo
+    )throws Exception {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedOperationException("Please set a numeric value!");
+        return convertoDoube(numberOne) - convertoDoube(numberTwo);
+    }
+
+    @RequestMapping("/div/{numberOne}/{numberTwo}")
+    public Double div(
+            @PathVariable("numberOne")  String numberOne,
+            @PathVariable("numberTwo")  String numberTwo
+    )throws Exception {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedOperationException("Please set a numeric value!");
+        return convertoDoube(numberOne) / convertoDoube(numberTwo);
+    }
+
+    @RequestMapping("/multi/{numberOne}/{numberTwo}")
+    public Double multi(
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo
+    )throws Exception {
+        if(!isNumeric(numberOne) || !isNumeric(numberTwo)) throw new UnsupportedOperationException("Please set a numeric value!");
+        return convertoDoube(numberOne) * (convertoDoube(numberTwo));
+    }
+
 }
