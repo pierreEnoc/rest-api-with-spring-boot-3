@@ -17,7 +17,6 @@ public class PersonServices {
 
     public Person findById(String id) {
         logger.info("Finding on Person");
-
         Person person = new Person();
         person.setId(counter.incrementAndGet());
         person.setFirstName(" Pierre");
@@ -28,6 +27,7 @@ public class PersonServices {
     }
 
 public List<Person> findAll(){
+    logger.info("Finding all People");
     List<Person> persons = new ArrayList<Person>();
     for (int i = 0; i < 8; i++){
     Person person =  mockPerson(i);
@@ -46,4 +46,18 @@ public List<Person> findAll(){
         return person;
     }
 
+    public Person create(Person person){
+        logger.info("Creating on Person");
+         return person;
+    }
+
+    public Person update(Person person){
+        logger.info("Update on Person");
+        return person;
+    }
+
+    public void delete(String id) {
+        logger.info("delete on Person");
+
+    }
 }
