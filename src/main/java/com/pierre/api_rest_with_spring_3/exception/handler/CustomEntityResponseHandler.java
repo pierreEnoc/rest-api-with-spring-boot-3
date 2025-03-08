@@ -1,10 +1,9 @@
 package com.pierre.api_rest_with_spring_3.exception.handler;
 
 import com.pierre.api_rest_with_spring_3.exception.ExceptionResponse;
-import com.pierre.api_rest_with_spring_3.exception.UnsuportedMathOperationException;
+import com.pierre.api_rest_with_spring_3.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,13 +26,13 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
     }
 
 
-    @ExceptionHandler(UnsuportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handlerBadRequestExceptions(Exception ex, WebRequest request) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handlerNotFoundExceptions(Exception ex, WebRequest request) {
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }
