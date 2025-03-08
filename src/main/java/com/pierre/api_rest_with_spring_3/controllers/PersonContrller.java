@@ -4,6 +4,7 @@ import com.pierre.api_rest_with_spring_3.model.Person;
 import com.pierre.api_rest_with_spring_3.serices.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,17 +26,14 @@ public class PersonContrller {
     }
 
 
-    @RequestMapping(
-    method = RequestMethod.GET,
-    produces = MediaType.APPLICATION_JSON_VALUE
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Person> findAll() {
         return services.findAll();
     }
 
 
-    @RequestMapping(
-            method = RequestMethod.POST,
+    @PostMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -43,8 +41,7 @@ public class PersonContrller {
         return services.create(person);
     }
 
-    @RequestMapping(
-            method = RequestMethod.PUT,
+    @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -52,13 +49,10 @@ public class PersonContrller {
         return services.update(person);
     }
 
-    @RequestMapping(value = "/{id}",
-            method = RequestMethod.DELETE,
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public void delete(@PathVariable("id") Long id) {
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
          services.delete(id);
-
+         return ResponseEntity.noContent().build();
     }
 
 }
