@@ -23,6 +23,10 @@ public class PersonDTO {
         this.gender = gender;
     }
 
+    public PersonDTO() {
+
+    }
+
     public Long getId() {
         return id;
     }
