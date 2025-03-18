@@ -1,6 +1,6 @@
 package com.pierre.api_rest_with_spring_3.controllers;
 
-import com.pierre.api_rest_with_spring_3.model.Person;
+import com.pierre.api_rest_with_spring_3.data.dto.PersonDTO;
 import com.pierre.api_rest_with_spring_3.serices.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,14 +21,14 @@ public class PersonContrller {
     method = RequestMethod.GET,
     produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Optional<Person> findById(@PathVariable("id") Long id) {
+    public PersonDTO findById(@PathVariable("id") Long id) {
         return services.findById(id);
     }
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         return services.findAll();
     }
 
@@ -37,7 +37,7 @@ public class PersonContrller {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person create( @RequestBody Person person) {
+    public PersonDTO create( @RequestBody PersonDTO person) {
         return services.create(person);
     }
 
@@ -45,7 +45,7 @@ public class PersonContrller {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public Person update( @RequestBody Person person) {
+    public PersonDTO update( @RequestBody PersonDTO person) {
         return services.update(person);
     }
 
